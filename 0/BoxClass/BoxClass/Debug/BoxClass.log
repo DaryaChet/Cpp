@@ -1,0 +1,15 @@
+﻿  Demo.cpp
+Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,struct Box)" (??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@UBox@@@Z) в функции _main.
+Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "bool __cdecl Check3sum(struct Box * const,int,int)" (?Check3sum@@YA_NQAUBox@@HH@Z) в функции _main.
+    Указание на символы, которые определены и могут подойти:
+      "bool __cdecl Check3sum(class Box * const,int,int)" (?Check3sum@@YA_NQAVBox@@HH@Z)
+Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "int __cdecl SumValue(struct Box * const,int)" (?SumValue@@YAHQAUBox@@H@Z) в функции _main.
+    Указание на символы, которые определены и могут подойти:
+      "int __cdecl SumValue(class Box * const,int)" (?SumValue@@YAHQAVBox@@H@Z)
+Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "double __cdecl findMaxWeight(struct Box * const,int,double)" (?findMaxWeight@@YANQAUBox@@HN@Z) в функции _main.
+    Указание на символы, которые определены и могут подойти:
+      "double __cdecl findMaxWeight(class Box * const,int,double)" (?findMaxWeight@@YANQAVBox@@HN@Z)
+Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "bool __cdecl checkBoxInBox(struct Box * const,int)" (?checkBoxInBox@@YA_NQAUBox@@H@Z) в функции _main.
+    Указание на символы, которые определены и могут подойти:
+      "bool __cdecl checkBoxInBox(class Box * const,int)" (?checkBoxInBox@@YA_NQAVBox@@H@Z)
+C:\Users\trolo\Documents\C++\0\BoxClass\BoxClass\Debug\BoxClass.exe : fatal error LNK1120: неразрешенных внешних элементов: 5
