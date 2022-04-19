@@ -60,13 +60,22 @@ bool checkBoxInBox(Box arrayBox[], const int num) {
 
     Box temp;
 
-    for (int i = 1; i < num; i++) {
+    bool result = true;
 
+    for (int i = 1; i < num; i++) {
+       
         for (int j = num - 1; j >= i; j--) {
 
-            if (arrayBox[j - 1].getLenght() > arrayBox[j].getLenght() &&
-                arrayBox[j - 1].getWidth() > arrayBox[j].getWidth() &&
+            if (arrayBox[j - 1].getLenght() > arrayBox[j].getLenght() ||
+                arrayBox[j - 1].getWidth() > arrayBox[j].getWidth() ||
                 arrayBox[j - 1].getHeight() > arrayBox[j].getHeight()) {
+                   
+                if (arrayBox[j - 1].getLenght() <= arrayBox[j].getLenght() || 
+                    arrayBox[j - 1].getWidth() <= arrayBox[j].getWidth() || 
+                    arrayBox[j - 1].getHeight() <= arrayBox[j].getHeight()) {
+                    result = false;
+                    break;
+                }
 
                 temp = arrayBox[j];
                 arrayBox[j] = arrayBox[j - 1];
@@ -74,8 +83,6 @@ bool checkBoxInBox(Box arrayBox[], const int num) {
             }
         }
     }
-
-    bool result = true;
 
     return result;
 }

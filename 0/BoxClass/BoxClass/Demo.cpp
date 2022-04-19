@@ -1,5 +1,5 @@
 #include "Demo.h"
-#include "BoxStruct.h"
+#include "BoxClass.h"
 
 int main()
 

@@ -1,4 +1,4 @@
-﻿  Demo.cpp
+﻿  BoxClass.cpp
 Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,struct Box)" (??6@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV01@UBox@@@Z) в функции _main.
 Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "bool __cdecl Check3sum(struct Box * const,int,int)" (?Check3sum@@YA_NQAUBox@@HH@Z) в функции _main.
     Указание на символы, которые определены и могут подойти:
@@ -12,4 +12,4 @@ Demo.obj : error LNK2019: ссылка на неразрешенный внеш�
 Demo.obj : error LNK2019: ссылка на неразрешенный внешний символ "bool __cdecl checkBoxInBox(struct Box * const,int)" (?checkBoxInBox@@YA_NQAUBox@@H@Z) в функции _main.
     Указание на символы, которые определены и могут подойти:
       "bool __cdecl checkBoxInBox(class Box * const,int)" (?checkBoxInBox@@YA_NQAVBox@@H@Z)
-C:\Users\trolo\Documents\C++\0\BoxClass\BoxClass\Debug\BoxClass.exe : fatal error LNK1120: неразрешенных внешних элементов: 5
+C:\Users\Darya\Documents\C++\C\0\BoxClass\BoxClass\Debug\BoxClass.exe : fatal error LNK1120: неразрешенных внешних элементов: 5

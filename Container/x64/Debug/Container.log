@@ -1,0 +1,4 @@
+﻿  Demo.cpp
+C:\Users\Darya\Documents\C++\C\Container\Container.h(33,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Darya\Documents\C++\C\Container\Demo.cpp(42,26): warning C4101: ex: неиспользованная локальная переменная
+  Container.vcxproj -> C:\Users\Darya\Documents\C++\C\Container\x64\Debug\Container.exe
