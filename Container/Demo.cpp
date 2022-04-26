@@ -6,7 +6,7 @@ int main()
 {
     const int SIZE = 3;
     containers::Box box1(3, 3, 3, 1, 5);
-    containers::Box box2(2, 1, 2, 2, 2);
+    containers::Box box2(2, 1, 2, 4, 2);
     containers::Box box3(2, 1, 1, 3, 1);
     containers::Box arrayBox[SIZE]{ box1, box2, box3 };
 
@@ -35,16 +35,8 @@ int main()
     container.add(box2);
     container.remove(1);
     container.add(box2);
-    std::cout << "box2 added: " << std::endl;
-    try {
-        container.add(box2);
-        std::cout << "box2 added: " << std::endl;
-    }catch (MyException& ex) {
-        std::cout << 'ex' << std::endl;
-    }
     std::cout << container.getBox(0) << std::endl;
-    std::cout << container.getBox(1) << std::endl;
-    std::cout << container.getBox(2) << std::endl;
+    std::cout << container[1] << std::endl;
     std::cout << "Container value: " << container.getValue() << std::endl;
     std::cout << "Container weight: " << container.getWeight() << std::endl;
     std::cout << container.getNumber() << " box in container";

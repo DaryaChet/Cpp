@@ -1,6 +1,25 @@
 ﻿#include "BoxClass.h"
 
 
+void containers::Box::setLenght(int lenght) {
+    if (lenght >= 0) this->length = lenght;
+    else throw new std::invalid_argument("Invalid argument");
+}
+void containers::Box::setWidth(int width) {
+    if (width >= 0) this->width = width;
+    else throw new std::invalid_argument("Invalid argument");
+}
+void containers::Box::setHeight(int height) {
+    if (height >= 0) this->height = height;
+    else throw new std::invalid_argument("Invalid argument"); }
+void containers::Box::setValue(int value) {
+    if (value >= 0) this->value = value;
+    else throw new std::invalid_argument("Invalid argument");
+}
+void containers::Box::setWeight(double weight) {
+    if (weight >= 0) this->weight = weight;
+    else throw new std::invalid_argument("Invalid argument");
+}
 
 bool containers::Check3sum(containers::Box arrayBox[], int num, int check) {
     /*Напишите функцию, которая проверяет, что сумма длины, ширины и высоты всех коробок
@@ -72,11 +91,13 @@ bool containers::checkBoxInBox(containers::Box arrayBox[], const int num) {
                 break;
             } else if((arrayBox[j - 1].getLenght() > arrayBox[j].getLenght() ||
                 arrayBox[j - 1].getWidth() > arrayBox[j].getWidth() ||
-                arrayBox[j - 1].getHeight() > arrayBox[j].getHeight()) || 
+                arrayBox[j - 1].getHeight() > arrayBox[j].getHeight()) && 
                 (arrayBox[j - 1].getLenght() < arrayBox[j].getLenght() ||
                 arrayBox[j - 1].getWidth() < arrayBox[j].getWidth() ||
                 arrayBox[j - 1].getHeight() < arrayBox[j].getHeight())) {
 
+                result = false;
+                break;
             }
         }
     }
