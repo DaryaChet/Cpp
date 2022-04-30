@@ -1,6 +1,2 @@
-﻿  DynamicArrayOfInteger.cpp
-  Main.cpp
-  Создание кода...
-C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(148): warning C4715: operator!=: значение возвращается не при всех путях выполнения
-C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(133): warning C4715: operator==: значение возвращается не при всех путях выполнения
-C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(203): error C4716: operator+: должна возвращать значение
+﻿  Main.cpp
+  DynamicArrayOfInteger.vcxproj -> C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\x64\Debug\DynamicArrayOfInteger.exe

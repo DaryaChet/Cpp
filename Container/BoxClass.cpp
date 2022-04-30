@@ -83,18 +83,10 @@ bool containers::checkBoxInBox(containers::Box arrayBox[], const int num) {
                 temp = arrayBox[j];
                 arrayBox[j] = arrayBox[j - 1];
                 arrayBox[j - 1] = temp;
-            }
-            else if (arrayBox[j - 1].getLenght() == arrayBox[j].getLenght() ||
-                arrayBox[j - 1].getWidth() == arrayBox[j].getWidth() ||
-                arrayBox[j - 1].getHeight() == arrayBox[j].getHeight()) {
-                result = false;
-                break;
-            } else if((arrayBox[j - 1].getLenght() > arrayBox[j].getLenght() ||
-                arrayBox[j - 1].getWidth() > arrayBox[j].getWidth() ||
-                arrayBox[j - 1].getHeight() > arrayBox[j].getHeight()) && 
-                (arrayBox[j - 1].getLenght() < arrayBox[j].getLenght() ||
-                arrayBox[j - 1].getWidth() < arrayBox[j].getWidth() ||
-                arrayBox[j - 1].getHeight() < arrayBox[j].getHeight())) {
+
+            } else if(arrayBox[j - 1].getLenght() <= arrayBox[j].getLenght() ||
+                arrayBox[j - 1].getWidth() <= arrayBox[j].getWidth() ||
+                arrayBox[j - 1].getHeight() <= arrayBox[j].getHeight()) {
 
                 result = false;
                 break;

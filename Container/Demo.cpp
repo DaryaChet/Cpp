@@ -6,8 +6,8 @@ int main()
 {
     const int SIZE = 3;
     containers::Box box1(3, 3, 3, 1, 5);
-    containers::Box box2(2, 1, 2, 4, 2);
-    containers::Box box3(2, 1, 1, 3, 1);
+    containers::Box box2(2, 2, 2, 4, 2);
+    containers::Box box3(1, 1, 1, 3, 1);
     containers::Box arrayBox[SIZE]{ box1, box2, box3 };
 
     for (int i = 0; i < SIZE; i++) {
@@ -36,6 +36,7 @@ int main()
     container.remove(1);
     container.add(box2);
     std::cout << container.getBox(0) << std::endl;
+    container[1].setValue(100);
     std::cout << container[1] << std::endl;
     std::cout << "Container value: " << container.getValue() << std::endl;
     std::cout << "Container weight: " << container.getWeight() << std::endl;

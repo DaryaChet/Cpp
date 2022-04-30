@@ -1,5 +1,4 @@
-﻿  BoxClass.cpp
-  Container.cpp
+﻿  Container.cpp
 C:\Users\Darya\Documents\C++\C\Container\Container.h(33,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
   Demo.cpp
 C:\Users\Darya\Documents\C++\C\Container\Container.h(33,19): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных

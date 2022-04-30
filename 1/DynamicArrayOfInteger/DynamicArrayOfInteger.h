@@ -22,7 +22,7 @@ public:
 
 	size_t getSize() const { return size; }
 	int& operator[](const size_t index);
-	int& operator[](const size_t index)const;
+	int operator[](const size_t index)const;
 	void resize(const size_t newSize);
 	void reserve(const size_t reserv);
 	void pushBack(const int value);
@@ -30,17 +30,20 @@ public:
 	size_t capasity() { return reserved; };
 	DynamicArrayOfInteger& operator=(const DynamicArrayOfInteger& other);
 	DynamicArrayOfInteger& operator=(DynamicArrayOfInteger&& other);
+	friend std::ostream& operator<<(std::ostream& out, DynamicArrayOfInteger& arr);
+	friend std::istream& operator>>(std::istream& out, DynamicArrayOfInteger& arr);
+
 
 };
 
+DynamicArrayOfInteger operator+(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator==(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator!=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator<(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator<=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator>(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
 bool operator>=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
-DynamicArrayOfInteger& operator+(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second);
-std::ostream& operator<<(std::ostream& out, DynamicArrayOfInteger& arr);
-std::istream& operator>>(std::istream& out, DynamicArrayOfInteger& arr);
+
+
 #endif
 

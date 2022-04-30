@@ -1,71 +1,74 @@
-#include <iostream>
 #include "DynamicArrayOfInteger.h"
+#include <iostream>
+
 
 int main()
 {
-	//constructors
+	//конструкторы
 	DynamicArrayOfInteger intArr1;
-	for (size_t i = 0; i < intArr1.getSize(); i++) {
-		std::cout << intArr1[i] << " ";
+	std::cout << "array1 size:" << intArr1.getSize() << " capacity:" << intArr1.capasity() << " / " <<  intArr1 << std::endl;
+
+	//размеры
+	intArr1.reserve(10); //выделить +10
+	std::cout << "array1 size:" << intArr1.getSize() << " capacity:" << intArr1.capasity() << " / " << intArr1 << std::endl;
+
+	intArr1.resize(15); //изменить размер с стандартного (10) на 15 
+	for (int i = 0; i < 15; i++) {
+		intArr1[i] = i + 1;
 	}
-	std::cout << std::endl;
-	std::cout << intArr1.getSize() << " ";
-	std::cout << intArr1.capasity() << " ";
-	std::cout << std::endl;
+	std::cout << "array1 size:" << intArr1.getSize() << " capacity:" << intArr1.capasity() << " / " << intArr1 << std::endl;
+
+	intArr1.resize(3); //уменьшили до 3
+	std::cout << "array1 size:" << intArr1.getSize() << " capacity:" << intArr1.capasity() << " / " << intArr1 << std::endl;
 
 
-	DynamicArrayOfInteger intArr2(2);
-	for (size_t i = 0; i < intArr2.getSize(); i++) {
-		std::cout << intArr2[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << intArr2.getSize() << " ";
-	std::cout << intArr2.capasity() << " ";
-	std::cout << std::endl;
+	DynamicArrayOfInteger intArr2(2,2);
+	std::cout << "array2 size:" << intArr2.getSize() << " capacity:" << intArr2.capasity() << " / " << intArr2 << std::endl;
 
-	DynamicArrayOfInteger intArr3(3, 3);
-	for (size_t i = 0; i < intArr3.getSize(); i++) {
-		std::cout << intArr3[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << intArr3.getSize() << " ";
-	std::cout << intArr3.capasity() << " ";
-	std::cout << std::endl;
-
-	DynamicArrayOfInteger intArr4(4, 4, 4);
-	for (size_t i = 0; i < intArr4.getSize(); i++) {
-		std::cout << intArr4[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << intArr4.getSize() << " ";
-	std::cout << intArr4.capasity() << " ";
-	std::cout << std::endl;
-
-	DynamicArrayOfInteger copy(intArr4);
-	intArr4.pushBack(4);
-	for (size_t i = 0; i < intArr4.getSize(); i++) {
-		std::cout << intArr4[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << intArr4.getSize() << " ";
-	std::cout << intArr4.capasity() << " ";
-	std::cout << std::endl;
-
-	for (size_t i = 0; i < copy.getSize(); i++) {
-		std::cout << copy[i] << " ";
-	}
-	std::cout << std::endl;
-	std::cout << copy.getSize() << " ";
-	std::cout << copy.capasity() << " ";
-	std::cout << std::endl;
+	DynamicArrayOfInteger intArr3(3, 3, 3);
+	std::cout << "array3 size:" << intArr3.getSize() << " capacity:" << intArr3.capasity() << " / " << intArr3 << std::endl;
 
 
-	//equals
-	std::cout << (intArr4 > intArr4) << " " << (intArr4 >= intArr4) << " " << (intArr4 == intArr4) << " " << std::endl;
-	std::cout << (intArr1 != intArr2) << " " << (intArr3 != intArr3);
-	std::cout << (intArr3 < intArr4) << " " << (intArr3 <= intArr3);
+	//сложение
+	DynamicArrayOfInteger intArr4 = intArr1 + intArr2;
+	std::cout << "array4/1+2 size:" << intArr4.getSize() << " capacity:" << intArr4.capasity() << " / " << intArr4 << std::endl;
 
-	//capacity
+	//копирование
+	DynamicArrayOfInteger copy(intArr3);
+	intArr3[0] = 4; 
+	std::cout << "arrayCopy3  size:" << copy.getSize() << " capacity:" << copy.capasity() << " / " << copy << std::endl;
 
+	//сравнения
+	std::cout << "(intArr1 <= intArr4):" << (intArr1 <= intArr4) << std::endl;
+	std::cout << "(intArr1 < intArr4):" << (intArr1 < intArr4) << std::endl;
+	std::cout << "(intArr1 >= intArr4):" << (intArr1 >= intArr4) << std::endl;
+	std::cout << "(intArr4 > intArr1):" << (intArr4 > intArr1) << std::endl;
+	std::cout << "(intArr1 <= intArr1):" << (intArr1 <= intArr1) << std::endl;
+	std::cout << "(intArr1 < intArr3):" << (intArr1 < intArr3) << std::endl;
+	std::cout << "(intArr1 >= intArr3):" << (intArr1 >= intArr3) << std::endl;
+	std::cout << "(intArr1 > intArr3):" << (intArr1 > intArr3) << std::endl << std::endl;
 	
+	try {
+		intArr1 == intArr4;
+		intArr1 != intArr4;
+	}
+	catch (std::exception ex) {
+		std::cout << ex.what();
+	}
+
+	std::cout << (intArr1 == intArr1) << std::endl;
+
+	intArr2.popBack();
+	intArr2.popBack();
+	try {
+		intArr2.popBack();
+	}
+	catch (std::exception ex) {
+		std::cout << ex.what() << std::endl;
+	}
+	std::cout << "array2 size:" << intArr2.getSize() << " capacity:" << intArr2.capasity() << " / " << intArr2 << std::endl;
+	for (int i = 0; i < 2; i++) {
+		intArr2.pushBack(i+1);
+	}
+	std::cout << "array2 size:" << intArr2.getSize() << " capacity:" << intArr2.capasity() << " / " << intArr2 << std::endl;
 }

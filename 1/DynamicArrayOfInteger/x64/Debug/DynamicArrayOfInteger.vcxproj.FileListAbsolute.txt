@@ -1,0 +1,1 @@
+C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\x64\Debug\DynamicArrayOfInteger.exe

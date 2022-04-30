@@ -2,38 +2,43 @@
 
 DynamicArrayOfInteger::DynamicArrayOfInteger(size_t n, int value, size_t reserv) {
 
-	array = new int[n+reserv];
+	array = new int[n+reserv]{0};
 	size = n;
 	reserved = reserv;
 	for (size_t i = 0; i < n; i++) { array[i] = value; }
 
 }
 
-DynamicArrayOfInteger::DynamicArrayOfInteger(const DynamicArrayOfInteger& other): size(other.size), array(new int[size]) {
+DynamicArrayOfInteger::DynamicArrayOfInteger(const DynamicArrayOfInteger& other): size(other.size), reserved(other.reserved) {
 	
-	for (size_t i = 0; i < size; i++) { this->array[i] = other.array[i];}
+	array = new int[size + reserved]{ 0 };
+	for (size_t i = 0; i < size; i++) { array[i] = other.array[i];}
 }
 
-DynamicArrayOfInteger::DynamicArrayOfInteger(DynamicArrayOfInteger&& other):size(other.size),array(other.array) {
+DynamicArrayOfInteger::DynamicArrayOfInteger(DynamicArrayOfInteger&& other):size(other.size),array(other.array), reserved(other.reserved) {
 
 	other.array = nullptr;
 	other.size = 0;
 	other.reserved = 0;
 };
 
-DynamicArrayOfInteger::~DynamicArrayOfInteger() { delete[] array;}
+DynamicArrayOfInteger::~DynamicArrayOfInteger() {
+
+	delete[] array;
+	array = nullptr;
+}
 
 int& DynamicArrayOfInteger::operator[](const size_t index) {
 
 	if (index >= size) throw new std::invalid_argument("element does not exist");
-	return array[index];
+	else return array[index];
 
 }
 
-int& DynamicArrayOfInteger::operator[](const size_t index) const{
+int DynamicArrayOfInteger::operator[](const size_t index) const{
 
 	if (index >= size) throw new std::invalid_argument("element does not exist");
-	return array[index];
+	else return array[index];
 
 }
 
@@ -41,7 +46,7 @@ void DynamicArrayOfInteger::resize(const size_t newSize) {
 	
 	if (size >= newSize) {
 
-		reserved = reserved + size - newSize;
+		reserved = reserved + (size - newSize);
 		size = newSize;
 	}
 	else if (size + reserved >= newSize) {
@@ -51,9 +56,9 @@ void DynamicArrayOfInteger::resize(const size_t newSize) {
 	}
 	else {
 
-		int* newArray = new int[newSize] {0};
-		for (size_t i = 0; i < std::min(size, newSize); i++) {
-			newArray[i] = this->array[i];
+		int* newArray = new int[newSize]{0};
+		for (size_t i = 0; i < size; i++) {
+			newArray[i] = array[i];
 		}
 		delete[] array;
 		array = newArray;
@@ -70,34 +75,39 @@ void DynamicArrayOfInteger::pushBack(const int value) {
 		size++;
 		reserved--;
 	}
-	else throw new std::exception("Error of array size");
+	else throw new std::exception("Array is overflow");
 };
 
 int DynamicArrayOfInteger::popBack() {
 
-	reserved++;
-	size--;
-	return array[size];
+	if (size != 0) {
+		reserved++;
+		size--;
+		return array[size];
+	}
+	else throw new std::exception("Array is empty");
 };
 
 void DynamicArrayOfInteger::reserve(const size_t reserv) {
 
-	int* newArray = new int[size+reserv] {0};
-	for (size_t i = 0; i < size + reserv; i++) {
-		newArray[i] = this->array[i];
+	int* newArray = new int[size + reserv]{ 0 };
+	reserved = reserved + reserv;
+	for (size_t i = 0; i < size; i++) {
+		newArray[i] = array[i];
 	}
 	delete[] array;
 	array = newArray;
-	size = size + reserv;
-	reserved = reserv;
 }
 
 DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(const DynamicArrayOfInteger& other) {
 	
 	if (this == &other) return *this;
-	if (array) delete[] array;
+	if (array) {
+		delete[] array;
+	}
 	size = other.size;
-	array = new int[size];
+	array = new int[size]{0};
+	reserved = other.reserved;
 	for (size_t i = 0; i < size; i++) {
 		array[i] = other.array[i];
 	}
@@ -106,14 +116,16 @@ DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(const DynamicArrayOfInte
 
 DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(DynamicArrayOfInteger&& other) {
 
-	if (this != &other) return *this;
-
-	if (array) delete[] array;
-
+	if (this == &other) return *this;
+	if (array) {
+		delete[] array;
+	}
 	size = other.size;
 	array = other.array;
+	reserved = other.reserved;
 	other.array = nullptr;
 	other.size = 0;
+	other.reserved = 0;
 
 	return *this;
 }
@@ -121,84 +133,72 @@ DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(DynamicArrayOfInteger&& 
 bool operator==(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
 
 	if (&first == &second) return true;
-	if (&first == nullptr || &second == nullptr) return false;
 	
-	if (first.getSize() == second.getSize()) {
+	if (first.getSize() != second.getSize()) throw new std::exception("Arrays has differents lengths");
 
-		for (size_t i = 0; i < first.getSize(); i++) {
+	for (size_t i = 0; i < first.getSize(); i++) {
 
-			if (first[i] != second[i]) {return false;}
-		}
+		if (first[i] != second[i]) {return false;}
 	}
-	else throw new std::exception("Arrays has differents lengths");
+	return true;
+
 };
 
 bool operator!=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second){
 
 	if (&first != &second) return true;
 
-	if (first.getSize() == second.getSize()) {
+	if (first.getSize() != second.getSize()) throw new std::exception("Arrays has differents lengths");
 
-		for (size_t i = 0; i < first.getSize(); i++) {
+	for (size_t i = 0; i < first.getSize(); i++) {
 
-			if (first[i] == second[i]) { return false;}
-		}
+		if (first[i] == second[i]) { return false; }
 	}
-	else throw new std::exception("Arrays has differents lengths");
+	return true;
 
 };
 
 bool operator<(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
 	
-	if (first == second) return false;
-	if (&first == nullptr || &second == nullptr) return false;
+	if (&first == &second) return false;
 
-	for (size_t i = 0; i < std::min(first.getSize(), second.getSize()); i++) {
-		if (first[i] >= second[i]) return false;
+	size_t minLenght = std::min(first.getSize(), second.getSize());
+
+	for (size_t i = 0; i < minLenght; i++) {
+
+		if (first[i] < second[i]) { return true; }
+		else if (first[i] > second[i]) { return false; }
+		else if (i+1 == minLenght) { return (first.getSize()<second.getSize()); }
 	}
-	return true;
 }
 
 bool operator<=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
 
-	if (first == second) return true;
-	if (&first == nullptr || &second == nullptr) return false;
+	if (&first == &second) return true;
 
-	for (size_t i = 0; i < std::min(first.getSize(), second.getSize()); i++) {
-		if (first[i] > second[i]) return false;
+	size_t minLenght = std::min(first.getSize(), second.getSize());
+
+	for (size_t i = 0; i < minLenght; i++) {
+
+		if (first[i] < second[i]) { return true; }
+		else if (first[i] > second[i]) { return false; }
+		else if (i + 1 == minLenght) { return (first.getSize() <= second.getSize());}
 	}
-	return true;
+
 }
-bool operator>(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
+bool operator>(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) { return second < first; };
+bool operator>=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) { return second <= first; };
 
-	if (first == second) return false;
-	if (&first == nullptr || &second == nullptr) return false;
-
-	for (size_t i = 0; i < std::min(first.getSize(), second.getSize()); i++) {
-		if (first[i] <= second[i]) return false;
-	}
-	return true;
-}
-
-bool operator>=(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
-
-	if (first == second) return true;
-	if (&first == nullptr || &second == nullptr) return false;
-
-	for (size_t i = 0; i < std::min(first.getSize(), second.getSize()); i++) {
-		if (first[i] < second[i]) return false;
-	}
-	return true;
-}
-
-DynamicArrayOfInteger& operator+(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
+DynamicArrayOfInteger operator+(const DynamicArrayOfInteger& first, const DynamicArrayOfInteger& second) {
 
 	DynamicArrayOfInteger result(first.getSize() + second.getSize());
 	for (size_t i = 0; i < first.getSize(); i++) {
 		result[i] = first[i];
 	}
-	for (size_t i = first.getSize()-1; i < second.getSize(); i++) {
-		result[i] = second[i];
+	size_t j = 0;
+	for (size_t i = first.getSize(); i < first.getSize() + second.getSize(); i++) {
+		result[i] = second[j];
+		j++;
 	}
 	return result;
 
@@ -206,7 +206,6 @@ DynamicArrayOfInteger& operator+(const DynamicArrayOfInteger& first, const Dynam
 
 std::ostream& operator<<(std::ostream& out, DynamicArrayOfInteger& arr) {
 	
-	out << arr.getSize() << " " << arr.capasity() << std::endl;
 	for (size_t i = 0; i < arr.getSize(); i++) {
 		out << arr[i] << " ";
 	}
@@ -220,11 +219,23 @@ std::istream& operator>>(std::istream& in, DynamicArrayOfInteger& arr) {
 		in >> tempSize;
 	}
 	catch (std::exception& ex) {
-		std::cout << ex.what();
+		throw& ex;
 	}
 	
-	if()
+	if (arr.array) delete[] arr.array;
+	int num = 0;
+	for (size_t i = 0; i < tempSize;i++) {
+
+		try {
+			in >> num;
+		}
+		catch (std::exception& ex) {
+			throw& ex;
+		}
+
 	
+	}
 	
+	return in;
 
 }
