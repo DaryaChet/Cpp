@@ -7,7 +7,7 @@ template<typename T> class RingBuffer {
 
 private:
 
-	friend class Iterator;
+	//friend class Iterator;
 	T* array;
 	size_t startIndex;
 	size_t arraySize;
@@ -35,7 +35,7 @@ public:
 
 	public:
 
-		Iterator(RingBuffer<T>& buff) :buffer(&buff) {};
+		Iterator(RingBuffer<T>& buff) :buffer(&buff),current(nullptr) {};
 		void start() { current = &buffer->array[buffer->startIndex]; }; // начать перебор элементов
 		void next() {
 			if (current + 1 == buffer->array + buffer->arrayMaxSize) current = buffer->array;
