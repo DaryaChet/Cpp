@@ -20,6 +20,7 @@ DynamicArrayOfInteger::DynamicArrayOfInteger(DynamicArrayOfInteger&& other):size
 	other.array = nullptr;
 	other.size = 0;
 	other.reserved = 0;
+	
 };
 
 DynamicArrayOfInteger::~DynamicArrayOfInteger() {

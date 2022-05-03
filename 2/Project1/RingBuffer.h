@@ -78,7 +78,7 @@ template<typename T> T& RingBuffer<T>::pop() {
 template<typename T> T& RingBuffer<T>::front()const {
 
 	if (arraySize == 0) throw RingBufferException("Buffer is empty");
-	return &array[startIndex];
+	return array[startIndex];
 
 }//	--получить элемент в начале очереди(без его изъ€ти€),
 

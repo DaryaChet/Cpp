@@ -22,6 +22,10 @@ int main() {
 	buffer.push(100);
 	buffer.push(100);
 
+	while (!buffer.isEmpty()) {
+		buffer.pop();
+	}
+	std::cout << buffer.size() << std::endl;
 	it.start();
 	while (!it.finish()) {
 		std::cout << it.getValue() << " ";
@@ -49,8 +53,9 @@ int main() {
 		iter.next();
 	}
 	std::cout << std::endl;
-	strBuff.pop();
+	//strBuff.pop();
 	iter.start();
+	std::cout << strBuff.front() << std::endl;
 	while (!iter.finish()) {
 		std::cout << iter.getValue() << " ";
 		iter.next();
