@@ -1,0 +1,73 @@
+﻿  List.cpp
+  Main.cpp
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(52,7): error C3668: List<std::string>::add: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(6): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "List<std::string>"
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(53,7): error C3668: List<std::string>::pop: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(54,23): error C2555: List<std::string>::findFirst: возвращаемый тип перегруженной виртуальной функции отличается от "AbstractList<T>::findFirst" и не является ковариантным
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\AbstractList.h(23): message : см. объявление "AbstractList<T>::findFirst"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(58,23): error C2555: List<std::string>::begin: возвращаемый тип перегруженной виртуальной функции отличается от "AbstractList<T>::begin" и не является ковариантным
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\AbstractList.h(27): message : см. объявление "AbstractList<T>::begin"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(24,1): error C2504: AbstractIterator<T>: не определен базовый класс
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(15): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "List<std::string>::Iterator<T>"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(34,8): error C3668: List<std::string>::Iterator<T>::start: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(35,6): error C3668: List<std::string>::Iterator<T>::getElement: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(36,8): error C3668: List<std::string>::Iterator<T>::next: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(37,8): error C3668: List<std::string>::Iterator<T>::finish: метод со спецификатором переопределения "override" не переопределяет какие-либо методы базового класса
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(15,2): error C2248: List<std::string>::Iterator<T>: невозможно обратиться к private class, объявленному в классе "List<std::string>"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\List.h(39): message : см. объявление "List<std::string>::Iterator<T>"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(6): message : см. объявление "List<std::string>"
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(15,2): error C2440: инициализация: невозможно преобразовать "AbstractIterator<T>" в "List<std::string>::Iterator<T>"
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Darya\Documents\C++\C\3\Class set\Main.cpp(15,51): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+  Создание кода...
