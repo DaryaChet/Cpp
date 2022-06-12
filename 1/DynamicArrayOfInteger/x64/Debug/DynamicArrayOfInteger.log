@@ -1,6 +1,6 @@
 ﻿  DynamicArrayOfInteger.cpp
   Main.cpp
   Создание кода...
-C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(190): warning C4715: operator<=: значение возвращается не при всех путях выполнения
-C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(175): warning C4715: operator<: значение возвращается не при всех путях выполнения
-  DynamicArrayOfInteger.vcxproj -> C:\Users\Darya\Documents\C++\C\1\DynamicArrayOfInteger\x64\Debug\DynamicArrayOfInteger.exe
+C:\Users\Darya\OneDrive\Документы\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(180): warning C4715: operator<: значение возвращается не при всех путях выполнения
+C:\Users\Darya\OneDrive\Документы\C++\C\1\DynamicArrayOfInteger\DynamicArrayOfInteger.cpp(195): warning C4715: operator<=: значение возвращается не при всех путях выполнения
+  DynamicArrayOfInteger.vcxproj -> C:\Users\Darya\OneDrive\Документы\C++\C\1\DynamicArrayOfInteger\x64\Debug\DynamicArrayOfInteger.exe

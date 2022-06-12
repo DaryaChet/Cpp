@@ -6,6 +6,7 @@ DynamicArrayOfInteger::DynamicArrayOfInteger(size_t n, int value, size_t reserv)
 	size = n;
 	reserved = reserv;
 	for (size_t i = 0; i < n; i++) { array[i] = value; }
+	std::cout << "Main constructor\n";
 
 }
 
@@ -13,6 +14,7 @@ DynamicArrayOfInteger::DynamicArrayOfInteger(const DynamicArrayOfInteger& other)
 	
 	array = new int[size + reserved]{ 0 };
 	for (size_t i = 0; i < size; i++) { array[i] = other.array[i];}
+	std::cout << "Copy constructor\n";
 }
 
 DynamicArrayOfInteger::DynamicArrayOfInteger(DynamicArrayOfInteger&& other):size(other.size),array(other.array), reserved(other.reserved) {
@@ -20,6 +22,8 @@ DynamicArrayOfInteger::DynamicArrayOfInteger(DynamicArrayOfInteger&& other):size
 	other.array = nullptr;
 	other.size = 0;
 	other.reserved = 0;
+
+	std::cout << "Move consctructor";
 	
 };
 
@@ -112,6 +116,7 @@ DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(const DynamicArrayOfInte
 	for (size_t i = 0; i < size; i++) {
 		array[i] = other.array[i];
 	}
+	std::cout << "Operator = copy\n";
 	return *this;
 }
 
@@ -127,7 +132,8 @@ DynamicArrayOfInteger& DynamicArrayOfInteger::operator=(DynamicArrayOfInteger&& 
 	other.array = nullptr;
 	other.size = 0;
 	other.reserved = 0;
-
+	
+	std::cout << "Operator\n";
 	return *this;
 }
 
