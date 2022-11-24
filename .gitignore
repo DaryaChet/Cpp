@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
-
+*.vs
+Debug
+x64
+*.vcxproj
 # Compiled Object files
 *.slo
 *.lo

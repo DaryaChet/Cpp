@@ -75,8 +75,8 @@ public:
 	~HashTable();
 
 	size_t hash(int key)const { return key % initialCapacity; };
-	void insertItem(int key, T& item);
-	void eraseItem(int key, T& item);
+	void insertItem(int key, const T& item);
+	void eraseItem(int key, const T& item);
 	Iterator findItem(int key, T& item) const;//	 найти элемент,
 	void makeEmpty();//	 сделать таблицу пустой,
 	bool isEmpty() const;//	 проверка таблицы на пустоту.
@@ -97,7 +97,7 @@ template <typename T> HashTable<T>::~HashTable() {
 	table = nullptr;
 }
 
-template <typename T> void HashTable<T>::insertItem(int key, T& item) {
+template <typename T> void HashTable<T>::insertItem(int key, const T& item) {
 
 	size_t index = hash(key);
 	Node* temp = new Node;
@@ -107,7 +107,7 @@ template <typename T> void HashTable<T>::insertItem(int key, T& item) {
 
 }
 
-template <typename T> void HashTable<T>::eraseItem(int key, T& item) {
+template <typename T> void HashTable<T>::eraseItem(int key, const T& item) {
 
 	size_t index = hash(key);
 

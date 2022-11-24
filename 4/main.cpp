@@ -19,16 +19,19 @@ int main() {
 	setlocale(LC_ALL, "ru");
 	HashTable<int> hashTable(10);//создаем
 	
+	//проверяем вставку
 	for (int i = 0; i < 10; i++) {
 		hashTable.insertItem(i,i);
 	}//заполняем
+	hashTable.insertItem(4, 14); //теперь с ключем 4 два элемента
 	print(hashTable);//выводим
 
+	//проверяем удаление
 	std::cout << "Удаляем четные" << std::endl;
 	for (int i = 0; i < 10; i++) {
 		if (i%2 == 0) hashTable.eraseItem(i, i);
 	}//удаляем четные
-	print(hashTable);//выводим
+	print(hashTable);
 
 	std::cout << "Находим элемент и выводим его" << std::endl;
 	int i = 9;
@@ -47,17 +50,11 @@ int main() {
 
 	//удаление элементов с одинаковым ключом
 	i = 0;
-	int item = 1;
-	hashTable.insertItem(i, item);
-	item = 2;
-	hashTable.insertItem(i, item);
-	item = 3;
-	hashTable.insertItem(i, item);
-	item = 2;
-	hashTable.eraseItem(i, item);
+	hashTable.insertItem(i, 1);
+	hashTable.insertItem(i, 2);
+	hashTable.insertItem(i, 3);
 	print(hashTable);
-	item = 1;
-	hashTable.eraseItem(i, item);
+	hashTable.eraseItem(i, 1);
 	print(hashTable);
 
 }
