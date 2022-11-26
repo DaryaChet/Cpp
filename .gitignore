@@ -4,6 +4,8 @@
 Debug
 x64
 *.vcxproj
+*.filters
+*.user
 # Compiled Object files
 *.slo
 *.lo

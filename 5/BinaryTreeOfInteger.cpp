@@ -1,5 +1,5 @@
 #include "BinaryTreeOfInteger.h"
-#define debug
+//#define debug
 
 void BinaryTreeOfInteger::deleteTree(Node* rt) {
 	
@@ -62,21 +62,6 @@ void BinaryTreeOfInteger::operator=(BinaryTreeOfInteger&& other) {
 
 void BinaryTreeOfInteger::insert(int x, std::vector<int> path) {
 
-	if (root == nullptr) {
-
-//		if (path.empty()) {
-
-			//root = new Node;
-		//	root->data = x;
-		//	root->left = nullptr;
-	//		root->right = nullptr;
-//
-		//	return;
-		//}
-		//else throw std::invalid_argument("Wrong way");
-	}
-
-
 	Node* p = root;
 	Node* prev = root;
 
@@ -91,21 +76,14 @@ void BinaryTreeOfInteger::insert(int x, std::vector<int> path) {
 
 	for (int i : path) {
 
-		if (i == 0) {
-			
-			if (!p) throw std::invalid_argument("Wrong way");
-			prev = p;
-			p = p->left;
-		}
-		else if (i == 1) {
+		if (!p) throw std::invalid_argument("Wrong way");
 
-			if (!p) throw std::invalid_argument("Wrong way");
-			prev = p;
-			p = p->right;
-		}
-		else {
-			throw std::invalid_argument("Wrong way, the number wasn't 0 or 1");
-		}
+		//if(prev == nullptr ) throw std::invalid_argument("Wrong way, it was too long");
+		prev = p;
+
+		if (i == 0) p = p->left;
+		else if (i == 1) p = p->right;
+		else throw std::invalid_argument("Wrong way, the number wasn't 0 or 1");
 
 	}
 
@@ -114,7 +92,7 @@ void BinaryTreeOfInteger::insert(int x, std::vector<int> path) {
 		if (prev->left == nullptr) prev->left = new Node;
 		prev->left->data = x;
 	}
-	else if (path.back() == 1) {
+	else {
 
 		if (prev->right == nullptr) prev->right = new Node;
 		prev->right->data = x;
@@ -224,7 +202,7 @@ std::vector<int> BinaryTreeOfInteger::find(int x) {
 	std::vector<int> tempVector;
 	std::vector<int> result;
 
-	if (!find(root, tempVector, x)) tempVector.push_back(-1);
+	if (!find(root, tempVector, x)) result.push_back(-1);
 	else {
 
 		for (int i = tempVector.size() - 1; i >= 0; i--) {

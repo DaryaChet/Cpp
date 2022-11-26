@@ -13,7 +13,7 @@ private:
 
 	};
 
-	size_t initialCapacity;
+	size_t capacity;
 	Node* table;
 
 public:
@@ -26,13 +26,12 @@ public:
 		Node* pointer;
 		size_t capacityOfHashTable;
 		size_t counter;
-
 		friend class HashTable<T>;
 
 	public:
 
 		Iterator(const HashTable<T>& hashTable) : table(hashTable.table), pointer(&hashTable.table[0])
-			, capacityOfHashTable(hashTable.initialCapacity), counter(0) {};
+			, capacityOfHashTable(hashTable.capacity), counter(0) {};
 
 		void start() {
 
@@ -42,8 +41,8 @@ public:
 
 			while (pointer == nullptr && counter < capacityOfHashTable) {
 				
-				counter++;
-				pointer = table[counter].next;
+				//counter++;
+				pointer = table[++counter].next;
 			}
 		}
 
@@ -53,8 +52,8 @@ public:
 
 			while (pointer == nullptr && counter < capacityOfHashTable) {
 
-				counter++;
-				pointer = table[counter].next;
+				//counter++;
+				pointer = table[++counter].next;
 
 			}
 		}
@@ -71,10 +70,10 @@ public:
 
 	};
 
-	HashTable(size_t initialCapacity = 10);
+	HashTable(size_t capacity = 20);
 	~HashTable();
 
-	size_t hash(int key)const { return key % initialCapacity; };
+	size_t hash(int key)const { return key % capacity; };
 	void insertItem(int key, const T& item);
 	void eraseItem(int key, const T& item);
 	Iterator findItem(int key, T& item) const;//	 найти элемент,
@@ -83,9 +82,9 @@ public:
 
 };
 
-template <typename T> HashTable<T>::HashTable(size_t initialCapacity): initialCapacity(initialCapacity), table(new Node[initialCapacity]) {
+template <typename T> HashTable<T>::HashTable(size_t capacity): capacity(capacity), table(new Node[capacity]) {
 	
-	for (int i = 0; i < initialCapacity; i++) {
+	for (int i = 0; i < capacity; i++) {
 		table[i].next = nullptr;
 	}
 }
@@ -145,7 +144,7 @@ template <typename T> typename HashTable<T>::Iterator HashTable<T>::findItem(int
 
 template <typename T> void HashTable<T>::makeEmpty(){
 
-	for (int i = 0; i < initialCapacity; i++) {
+	for (int i = 0; i < capacity; i++) {
 
 		while (table[i].next != nullptr) {
 
@@ -159,7 +158,7 @@ template <typename T> void HashTable<T>::makeEmpty(){
 
 template <typename T> bool HashTable<T>::isEmpty() const{
 
-	for (int i = 0; i < initialCapacity; i++) {
+	for (int i = 0; i < capacity; i++) {
 	
 		if (table[i].next != nullptr) return false;
 	

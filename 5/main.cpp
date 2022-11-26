@@ -1,17 +1,18 @@
 #include "BinaryTreeOfInteger.h"
-
+//#define testopeatorsandconstr
+//#define testfunc
 
 BinaryTreeOfInteger testMoveConstructor(BinaryTreeOfInteger& tree) {
-	
-	//tree.insert(7, std::vector<int>{});
+
 	BinaryTreeOfInteger tree2(tree); //ÒÓÒ ÑĞÀÁÎÒÀË ÊÎÍÑÒĞÓÊÒÎĞ ÊÎÏÈĞÎÂÀÍÈß
 	return tree2; //À ÒÓÒ ÊÎÍÑÒĞÓÊÒÎÒĞ ÏÅĞÅÌÅÙÅÍÈß (ÂÎÇÂĞÀÙÀÅÒÑß R-VALUE ÁÅÇÛÌßÍÍÛÉ ÎÁÚÅÊÒ, ÎÏÒÈÌÈÇÀÖÈß)
 }
 
-BinaryTreeOfInteger testMoveOperator(BinaryTreeOfInteger& tree) {
+BinaryTreeOfInteger testMoveOperator(BinaryTreeOfInteger tree) {
 
-	//tree.insert(-1000, std::vector<int>{});
 	BinaryTreeOfInteger tree2(tree); //ÒÓÒ ÑĞÀÁÎÒÀË ÊÎÍÑÒĞÓÊÒÎĞ ÊÎÏÈĞÎÂÀÍÈß
+	tree2.insert(10, std::vector<int>{});
+	//std::cout << tree << std::endl;
 	return tree2; //À ÒÓÒ ÊÎÍÑÒĞÓÊÒÎÒĞ ÏÅĞÅÌÅÙÅÍÈß (ÂÎÇÂĞÀÙÀÅÒÑß R-VALUE ÁÅÇÛÌßÍÍÛÉ ÎÁÚÅÊÒ, ÎÏÒÈÌÈÇÀÖÈß)
 }
 
@@ -27,10 +28,18 @@ int main() {
 	tree.insert(2, std::vector<int>{1});    //    3    4
 	tree.insert(3, std::vector<int>{0,0});
 	tree.insert(4, std::vector<int>{0, 1});
+	
 
 	//ÂÛÂÎÄÈÌ ÄÅĞÅÂÎ
 	std::cout << tree << std::endl;
+	//tree.insert(4, std::vector<int>{0, 1, 1, 1, 1, 1, 1, 1});
 
+	try {
+		tree.insert(4, std::vector<int>{0, 1, 1, 1, 1, 1, 1, 1});
+	}
+	catch (std::invalid_argument ex) {
+		std::cout << std::endl << ex.what() << std::endl;
+	}
 	//ÏĞÎÂÅĞßÅÌ ÎØÈÁÊÈ ÂÑÒÀÂÊÈ ÏĞÈ ÍÅÂÅĞÍÎÌ ÏÓÒÈ (ÑËÈØÊÎÌ ÄËÈÍÍÛÉ ÈËÈ ÍÅÊÎĞĞÅÊÒÍÛÅ ×ÈÑËÀ - ÍÅ 0 ÈËÈ 1)
 	try {
 		tree.insert(100, std::vector<int>{1, 1, 1, 1});
@@ -49,6 +58,8 @@ int main() {
 	tree.insert(-1, std::vector<int>{0, 1});
 	std::cout << std::endl << "Ìåíÿåì ıëåìåíò ñ ïóòåì {0, 1}: " << tree << std::endl;
 
+	#ifndef testopeatorsandconstr
+
 	//ÑÎÇÄÀÅÌ ÂÒÎĞÎÅ ÄÅĞÅÂÎ Ñ ÏÎÌÎÙÜŞ ÊÎÍÑÒĞÓÊÒÎĞÀ ÊÎÏÈĞÎÂÀÍÈß
 	std::cout << std::endl << "Ñîçäàåì âòîğîå äåğåâî ñ ïîìîùüş êîíñòğóêòîğà êîïèğîâàíèÿ: ";
 	BinaryTreeOfInteger tree2(tree);
@@ -62,20 +73,27 @@ int main() {
 	//ÏĞÎÂÅĞßÅÌ ÊÎÍÑÒĞÓÊÒÎĞ ÏÅĞÅÌÅÙÅÍÈß
 	std::cout << std::endl << "Ïğîâåğÿåì êîíñòğóêòîğ ïåğìåùåíèÿ(âñòàâêà â êîğåíü ïåğâîãî äåğåâî 1000): ";
 	BinaryTreeOfInteger tree3(testMoveConstructor(tree));
+	std::cout << std::endl << tree << " || " << tree3 << std::endl;
 	tree.insert(1000, std::vector<int>{});
 	std::cout << tree << " || " << tree3 << std::endl;
 
 	//ÏĞÎÂÅĞßÅÌ ÎÏÅĞÀÒÎĞ ÏĞÈÑÂÀÈÂÀÍÈß	
-	std::cout << std::endl << "Ïğîâåğÿåì îïåğàòîğ ïğèñâàèâàíèÿ 1=2 è (óäàëÿåì ëèñòüÿ â tree3): ";
+	std::cout << std::endl << "Ïğîâåğÿåì îïåğàòîğ ïğèñâàèâàíèÿ 1=3 è (óäàëÿåì ëèñòüÿ â tree3): ";
 	tree = tree3;
 	tree3.removeAllLeaf();// À çàîäíî óäàëåíèå ëèñòüåâ
 	std::cout << tree << " || " << tree3 << std::endl;
 
 	//ÏĞÎÂÅĞßÅÌ ÎÏÅĞÀÒÎĞ ÏÅĞÅÌÅÙÅÍÈß
-	std::cout << std::endl << "Ïğîâåğÿåì îïåğàòîğ ïåğìåùåíèÿ (âñòàâêà â êîğåíü ïåğâîãî äåğåâî 0): ";
-	tree = testMoveConstructor(tree3);
-	tree.insert(1000, std::vector<int>{});
+	std::cout << std::endl << "Ïğîâåğÿåì îïåğàòîğ ïåğìåùåíèÿ (âñòàâêà â êîğåíü ïåğâîãî äåğåâî 5): ";
+	tree = testMoveOperator(tree3);
 	std::cout << tree << " || " << tree3 << std::endl;
+	tree.insert(5, std::vector<int>{});
+	std::cout << tree << " || " << tree3 << std::endl;
+
+	#endif testopeatorsandconstr
+
+
+	#ifndef testfunc
 
 	//ÊÎËÈ×ÅÑÒÂÎ ×ÅÒÍÛÕ ×ÈÑÅË Â ÄÅĞÅÂÅ
 	std::cout << std::endl << tree2 << "   ÷åòíûõ: " << tree2.getNumberOfEven();
@@ -95,12 +113,13 @@ int main() {
 	std::cout << std::endl << tree2 << "ñğåäíåå àğèôìåòè÷åñêîå: " << tree2.getArithmeticalMean();
 	
 
-	tree.insert(0, std::vector<int>());     //             0
+	tree.insert(0, std::vector<int>());     //            0
 	tree.insert(1, std::vector<int>{0});    //       1          2
-	tree.insert(2, std::vector<int>{1});    //    3    4
+	tree.insert(2, std::vector<int>{1});    //    3    4           5
 	tree.insert(3, std::vector<int>{0, 0}); //            5
 	tree.insert(4, std::vector<int>{0, 1});
 	tree.insert(5, std::vector<int>{0, 1, 1});
+	tree.insert(5, std::vector<int>{1,1});
 
 	//ÈÙÅÌ ×ÈÑËA
 	std::cout << std::endl << tree << "ïóòü ê ıëåìåíòó 5: ";
@@ -119,6 +138,6 @@ int main() {
 		std::cout << i << " ";
 	}
 	
-
+	#endif  testfunc
 
 }
